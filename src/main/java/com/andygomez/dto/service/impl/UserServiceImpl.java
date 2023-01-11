@@ -2,31 +2,32 @@ package com.andygomez.dto.service.impl;
 
 import com.andygomez.dto.model.User;
 import com.andygomez.dto.repository.UserRepository;
-import com.andygomez.dto.service.Userservice;
+import com.andygomez.dto.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-@RequiredArgsConstructor
-public class UserServiceImpl implements Userservice {
+public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository repository;
 
     @Override
-    public User getUserById(Long id) {
+    public User findUserById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> findAllUsers() {
         return repository.findAll();
     }
 
     @Override
-    public void saveNewUser(User user) {
+    public void saveUser(User user) {
         repository.save(user);
     }
 

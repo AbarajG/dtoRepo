@@ -4,11 +4,11 @@ import com.andygomez.dto.model.User;
 
 import java.util.List;
 
-public interface Userservice {
+public interface UserService {
 
-    User getUserById(Long id);
-    List<User> getAllUsers();
-    void saveNewUser(User user);
+    User findUserById(Long id);
+    List<User> findAllUsers();
+    void saveUser(User user);
     void updateUser(Long id, User user);
     void deleteUserById(Long id);
 
