@@ -1,5 +1,6 @@
 package com.andygomez.dto.controller;
 
+import com.andygomez.dto.dto.UserDto;
 import com.andygomez.dto.model.User;
 import com.andygomez.dto.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,24 +21,24 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id){
+    public ResponseEntity<?> getUserById(@PathVariable Long id){
         return new ResponseEntity<>(service.findUserById(id), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<?> getAllUsers(){
         return new ResponseEntity<>(service.findAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<User> saveNewUser(@Valid @RequestBody User user){
-        service.saveUser(user);
+    public ResponseEntity<User> saveNewUser(@Valid @RequestBody UserDto userDto){
+        service.saveUser(userDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
-        service.updateUser(id, user);
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
+        service.updateUser(id, userDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
